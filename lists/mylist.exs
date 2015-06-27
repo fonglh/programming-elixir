@@ -19,4 +19,15 @@ defmodule MyList do
   # turn them into private helper functions, public API doesn't take the 0
   defp _sum_orig([], total), do: total
   defp _sum_orig([ head | tail ], total), do: _sum_orig(tail, head+total)
+
+  # example use
+  # MyList.reduce([1,2,3,4,5], 1, &(&1*&2))
+  # MyList.reduce([1,2,3,4,5], 0, &(&1+&2))
+  def reduce([], value, _) do
+    value
+  end
+
+  def reduce([ head | tail ], value, func) do
+    reduce(tail, func.(head, value), func)
+  end
 end
