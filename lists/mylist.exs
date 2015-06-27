@@ -30,4 +30,18 @@ defmodule MyList do
   def reduce([ head | tail ], value, func) do
     reduce(tail, func.(head, value), func)
   end
+
+  def mapsum([], _func), do: 0
+  def mapsum([ head | tail ], func), do: func.(head) + mapsum(tail, func)
+
+  # only finds the max of positive numbers
+  def max(list), do: _max(list, 0)
+  defp _max([], curr_max), do: curr_max
+  defp _max([ head | tail ], curr_max) when head > curr_max, do: _max(tail, head)
+  defp _max([ _head | tail ], curr_max), do: _max(tail, curr_max)
+
+  # only handles lower case
+  def caesar([], _shift), do: []
+  def caesar([ head | tail ], shift) when (head+shift) <= 122, do: [ head + shift ] ++ caesar(tail, shift)
+  def caesar([ head | tail ], shift), do: [ head - shift ] ++ caesar(tail, shift)
 end
