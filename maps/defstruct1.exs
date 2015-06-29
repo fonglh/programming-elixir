@@ -1,4 +1,6 @@
 defmodule Attendee do
+  # the Access protocol defines the ability to access fields with square bracket notation
+  @derive Access
   defstruct name: "", paid: false, over_18: true
 
   def may_attend_after_party(attendee = %Attendee{}) do
