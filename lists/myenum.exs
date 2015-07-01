@@ -9,4 +9,15 @@ defmodule MyEnum do
     func.(head)
     each(tail, func)
   end
+
+  def filter(collection, func), do: _filter(collection, func, [])
+  defp _filter([], _func, result), do: result 
+  defp _filter([ head | tail ], func, result) do
+    if func.(head) == true do
+      _filter(tail, func, result ++ [head])
+    else
+      _filter(tail, func, result)
+    end
+  end
 end
+
