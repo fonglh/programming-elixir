@@ -48,4 +48,8 @@ defmodule MyList do
   # span returns a list of the numbers from `from` up to `to` inclusive
   def span(from, to) when from == to, do: [to]
   def span(from, to), do: [from] ++ span(from+1, to)
+
+  def flatten([]), do: []
+  def flatten([ head | tail ]), do: flatten(head) ++ flatten(tail)
+  def flatten(elem), do: [elem]
 end
