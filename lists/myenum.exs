@@ -23,5 +23,11 @@ defmodule MyEnum do
   def take([ head | tail ], num_elements) do
     [head] ++ take(tail, num_elements-1)
   end
+
+  def split(collection, num_elements), do: _split(collection, num_elements, [])
+  defp _split(collection, 0, first_half), do: {first_half, collection}
+  defp _split([ head | tail ], num_elements, first_half) do
+    _split(tail, num_elements-1, first_half ++ [head])
+  end
 end
 
