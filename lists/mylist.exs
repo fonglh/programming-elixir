@@ -52,4 +52,17 @@ defmodule MyList do
   def flatten([]), do: []
   def flatten([ head | tail ]), do: flatten(head) ++ flatten(tail)
   def flatten(elem), do: [elem]
+
+  # Return list of prime numbers from 2 to n
+  def list_primes(n) do
+    for x <- span(2, n), is_prime(x) == true, do: x
+  end
+
+  # Need some starter values so the divide by 2 optimization works
+  defp is_prime(2), do: true
+  defp is_prime(3), do: true
+  defp is_prime(n) do
+    divide_results = for divisor <- span(2, div(n, 2)), (rem(n, divisor) == 0), do: false
+    Enum.empty?(divide_results)
+  end
 end
