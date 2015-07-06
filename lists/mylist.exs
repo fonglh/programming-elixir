@@ -44,4 +44,8 @@ defmodule MyList do
   def caesar([], _shift), do: []
   def caesar([ head | tail ], shift) when (head+shift) <= 122, do: [ head + shift ] ++ caesar(tail, shift)
   def caesar([ head | tail ], shift), do: [ head - shift ] ++ caesar(tail, shift)
+
+  # span returns a list of the numbers from `from` up to `to` inclusive
+  def span(from, to) when from == to, do: [to]
+  def span(from, to), do: [from] ++ span(from+1, to)
 end
