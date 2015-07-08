@@ -6,5 +6,8 @@ defmodule Chap11 do
     true && printable?(tail)
   end
   def printable?(_str), do: false
+
+  # return true if parameters are anagrams
+  def anagram?(word1, word2), do: word1 == Enum.reverse(word2)
 end
 
